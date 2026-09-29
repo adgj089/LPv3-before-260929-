@@ -51,7 +51,7 @@ header{box-shadow:0 1px 0 rgba(52,88,107,.08)}
 .header-cta{box-shadow:none}
 .hero{padding:0;background:linear-gradient(90deg,#fff 0%,#fff 54%,#f2f7f9 54%,#f2f7f9 100%)}
 .hero-grid{min-height:520px;gap:46px}
-.hero h1{color:#173f55;font-size:46px;letter-spacing:.01em;margin-bottom:20px}
+.hero h1{color:#173f55;font-size:clamp(25px,calc(3.7vw - 3.4px),40px);letter-spacing:.01em;margin-bottom:20px}
 .hero-copy{max-width:560px}
 .tags{gap:7px}
 .tag{background:#eef6f9;border-color:#d7e6ec;color:#315d72}
@@ -59,6 +59,7 @@ header{box-shadow:0 1px 0 rgba(52,88,107,.08)}
 .hero img{height:100%;min-height:430px;aspect-ratio:auto;border-radius:0;object-position:center}
 .two-col{gap:44px}
 #concept .section-title{text-align:left}
+#concept .section-title{white-space:nowrap}
 #concept .section-title:after{margin-left:0}
 #concept img{box-shadow:0 2px 10px rgba(0,0,0,.05)}
 .features-grid{gap:18px}
@@ -120,6 +121,7 @@ footer{padding-top:38px}
  .hero h1{font-size:31px}
  .hero img{min-height:0;height:auto;border-radius:8px 8px 0 0}
  #concept .section-title,#booking .section-title,#access .section-title{text-align:left}
+ #concept .section-title{white-space:normal}
  .feature{min-height:0}
  .service-visual{aspect-ratio:4/3}
  .service-item{grid-template-columns:44px 1fr}
