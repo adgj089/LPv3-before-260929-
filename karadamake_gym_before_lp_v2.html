@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カラダメイク GYM｜愛媛県西予市のパーソナルジム【架空デモ v2】</title>
+<meta name="description" content="ダイエット、ボディメイク、筋力・体力づくり、姿勢改善、健康維持まで、一人ひとりに合わせたパーソナルトレーニングをご提案します。※架空のデモサイトです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--main:#47758D;--dark:#34586B;--pale:#F1F6F8;--text:#333;--line:#dce5e9;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font-family:"Noto Sans JP",sans-serif;font-size:16px;line-height:1.75;background:#fff}img{display:block;width:100%;object-fit:cover;border-radius:8px}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.container{width:min(1120px,calc(100% - 40px));margin:auto}.section{padding:80px 0}.bg-pale{background:var(--pale)}
+.section-title{font-size:32px;line-height:1.4;margin:0 0 40px;font-weight:700}.section-title:after{content:"";display:block;width:48px;height:3px;background:var(--main);margin-top:14px}.section-lead{max-width:760px;margin:-20px 0 38px}.note{font-size:13px;color:#68777e}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 22px;background:var(--main);color:#fff;border:0;border-radius:6px;font-weight:600;transition:background .2s}.btn:hover{background:var(--dark)}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+header{background:#fff;border-bottom:1px solid #edf1f3}.header-inner{height:82px;display:flex;align-items:center;gap:24px}.logo{font-size:21px;font-weight:700;white-space:nowrap;color:var(--dark)}.desktop-nav{margin-left:auto;display:flex;align-items:center;gap:18px;font-size:14px}.header-cta{font-size:13px;padding-inline:16px}.menu-btn,.mobile-menu{display:none}
+.hero{padding:34px 0}.hero-grid{min-height:570px;display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}.hero h1{font-size:48px;line-height:1.35;margin:0 0 24px}.hero-copy{margin:0 0 24px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}.tag{padding:5px 12px;border:1px solid #cbd9df;border-radius:4px;background:#fff;font-size:14px}.hero-note{margin:0 0 28px;color:#56656b}.hero img{aspect-ratio:4/3}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}.two-col img{aspect-ratio:4/3}.concept-copy p{margin:0 0 16px}
+.features-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:24px}.feature{grid-column:span 2;padding:28px}.feature:nth-child(4){grid-column:2/span 2}.feature:nth-child(5){grid-column:4/span 2}.icon{width:42px;height:42px;color:var(--main);margin-bottom:18px}.feature h3{margin:0 0 10px;font-size:19px}.feature p{margin:0}
+.service-visual{aspect-ratio:16/6;margin-bottom:38px}.service-list{border-top:1px solid var(--line)}.service-item{display:grid;grid-template-columns:72px 250px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--line)}.service-num{font-weight:700;color:var(--main)}.service-item h3,.service-item p{margin:0}
+.case-grid,.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.case-card{overflow:hidden}.case-card img{border-radius:8px 8px 0 0;aspect-ratio:4/3}.case-body{padding:24px}.case-label{font-weight:700;color:var(--main);font-size:14px}.case-body h3{margin:4px 0 10px}.case-body p{margin:5px 0}.demo-chip{display:inline-block;margin-top:12px;padding:3px 8px;background:var(--pale);font-size:12px;border-radius:4px}
+.trainer-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}.trainer{padding:24px}.trainer-main{aspect-ratio:4/3;margin-bottom:20px}.trainer h3{font-size:24px;margin:0 0 8px}.specialties{margin:12px 0 18px;padding-left:1.2em}.trainer-scene{aspect-ratio:4/3;margin-top:18px}
+.price-card{padding:28px;text-align:center}.price-card h3{margin:0 0 12px}.price{font-size:30px;font-weight:700;color:var(--dark);margin:0}.price small{font-size:14px;font-weight:400}.price-table{width:100%;border-collapse:collapse;margin-top:32px;background:#fff}.price-table th,.price-table td{border:1px solid var(--line);padding:14px;text-align:left;vertical-align:top}.price-table th{width:180px;background:#f8fafb}
+.faq{border-top:1px solid var(--line)}.faq-item{border-bottom:1px solid var(--line)}.faq-q{width:100%;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:20px 4px;background:#fff;border:0;text-align:left;font-weight:600;color:var(--text)}.faq-symbol{font-size:24px;color:var(--main)}.faq-a{display:none;padding:0 42px 20px 4px}.faq-item.open .faq-a{display:block}
+.booking-grid{display:grid;grid-template-columns:2fr 3fr;gap:50px;align-items:start}.info-box{padding:24px;background:#fff;border-left:4px solid var(--main)}.info-box p{margin:4px 0}.form-box{background:#fff;border:1px solid var(--line);padding:28px;border-radius:8px}.field{margin-bottom:18px}.field label{display:block;font-weight:600;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid #bdcbd1;border-radius:4px;background:#fff}.field textarea{min-height:120px;resize:vertical}.form-box .btn{width:100%}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}.access-list{margin:24px 0 0;padding:0;list-style:none}.access-list li{padding:10px 0;border-bottom:1px solid var(--line)}.demo-map{min-height:330px;border:1px solid #bdcbd1;border-radius:8px;background:linear-gradient(32deg,transparent 47%,#d7e2e6 48%,#d7e2e6 52%,transparent 53%),linear-gradient(145deg,transparent 44%,#d7e2e6 45%,#d7e2e6 49%,transparent 50%),#f7fafb;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.demo-map span{background:#fff;border:2px solid var(--main);padding:12px 18px;border-radius:6px;font-weight:700;color:var(--dark)}
+.contact-wrap{max-width:760px;margin:auto}.contact-info{text-align:center;margin-bottom:28px}.contact-wrap .section-title{text-align:center}.contact-wrap .section-title:after{margin:14px auto 0}
+footer{background:var(--dark);color:#fff;padding:52px 0 24px}.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:40px}.footer-logo{font-size:22px;font-weight:700}.footer-nav{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}.footer-meta p{margin:3px 0}.copyright{border-top:1px solid rgba(255,255,255,.25);margin-top:36px;padding-top:18px;font-size:13px;color:#e6eef1}
+@media(max-width:767px){
+ .section{padding:56px 0}.section-title{font-size:26px;margin-bottom:32px}.desktop-nav,.header-inner>.header-cta{display:none}.header-inner{height:68px}.menu-btn{display:block;margin-left:auto;width:44px;height:40px;border:0;background:#fff;font-size:26px;color:var(--dark)}.mobile-menu{background:#fff;border-top:1px solid var(--line);padding:12px 20px 20px}.mobile-menu.open{display:block}.mobile-menu a{display:block;padding:10px 0;border-bottom:1px solid #edf1f3}.mobile-menu .btn{margin-top:16px;border-bottom:0}
+ .hero{padding:38px 0 56px}.hero-grid{min-height:0;grid-template-columns:1fr;gap:34px}.hero h1{font-size:32px}.hero img{order:2}.two-col{grid-template-columns:1fr;gap:28px}.concept-copy{display:contents}.concept-copy .section-title{order:-2}.two-col img{order:-1}
+ .features-grid{grid-template-columns:1fr;gap:24px}.feature,.feature:nth-child(4),.feature:nth-child(5){grid-column:auto}
+ .service-visual{aspect-ratio:4/3}.service-item{grid-template-columns:52px 1fr;gap:12px}.service-item p{grid-column:2}
+ .case-grid,.trainer-grid,.price-grid,.booking-grid,.access-grid,.footer-grid{grid-template-columns:1fr;gap:24px}.price-table th{width:105px}.price-table th,.price-table td{padding:10px}
+ .booking-grid{gap:28px}.form-box{padding:20px}.demo-map{min-height:280px}.footer-nav{grid-template-columns:1fr 1fr}
+}
+
+/* ===== v2 visual refinement: mockup direction ===== */
+body{background:#fff}
+.section{padding:72px 0}
+.section-title{text-align:center;color:#173f55;margin-bottom:34px}
+.section-title:after{margin:12px auto 0;width:42px;height:3px}
+.section-lead{text-align:center;margin:-14px auto 34px;color:#64757d}
+.note{color:#708088}
+header{box-shadow:0 1px 0 rgba(52,88,107,.08)}
+.header-inner{height:76px}
+.logo{font-size:22px;color:#214b62}
+.desktop-nav{gap:20px;color:#4f626b}
+.header-cta{box-shadow:none}
+.hero{padding:0;background:linear-gradient(90deg,#fff 0%,#fff 54%,#f2f7f9 54%,#f2f7f9 100%)}
+.hero-grid{min-height:520px;gap:46px}
+.hero h1{color:#173f55;font-size:46px;letter-spacing:.01em;margin-bottom:20px}
+.hero-copy{max-width:560px}
+.tags{gap:7px}
+.tag{background:#eef6f9;border-color:#d7e6ec;color:#315d72}
+.hero-note{font-size:15px}
+.hero img{height:100%;min-height:430px;aspect-ratio:auto;border-radius:0;object-position:center}
+.two-col{gap:44px}
+#concept .section-title{text-align:left}
+#concept .section-title:after{margin-left:0}
+#concept img{box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.features-grid{gap:18px}
+.feature{padding:24px;text-align:center;min-height:210px}
+.icon{margin:0 auto 14px;width:38px;height:38px}
+.feature h3{font-size:18px;color:#244f66}
+.feature p{font-size:14px;line-height:1.7}
+.service-visual{margin-bottom:28px;aspect-ratio:16/5.5}
+.service-list{max-width:1000px;margin:auto}
+.service-item{grid-template-columns:62px 230px 1fr;padding:20px 0}
+.service-num{font-size:20px}
+.service-item h3{color:#244f66}
+.case-grid{gap:18px}
+.case-card{box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.case-body{padding:18px}
+.case-body h3{font-size:17px}
+.case-body p{font-size:14px;line-height:1.65}
+.trainer-grid{gap:18px}
+.trainer{padding:0;overflow:hidden;display:grid;grid-template-columns:42% 58%;align-items:stretch}
+.trainer-main{height:100%;min-height:330px;margin:0;border-radius:0;object-position:center top}
+.trainer-content{padding:22px}
+.trainer h3{font-size:22px;color:#214b62;margin-bottom:4px}
+.trainer .specialties{display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:10px 0 14px;list-style:none}
+.trainer .specialties li{font-size:12px;padding:4px 8px;background:#eef6f9;border-radius:4px;color:#315d72}
+.trainer-content p{font-size:14px;line-height:1.7}
+.trainer-scene{aspect-ratio:16/9;margin-top:12px}
+.price-grid{gap:18px}
+.price-card{padding:22px 18px}
+.price-card h3{color:#244f66}
+.price{font-size:28px}
+.price-table{max-width:780px;margin:26px auto 0}
+#price .note{text-align:right;max-width:780px;margin:8px auto 0}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;border-top:0}
+.faq-item{border-top:1px solid var(--line)}
+.faq-q{padding:16px 2px}
+.booking-grid{grid-template-columns:40% 60%;gap:34px}
+#booking .section-title{text-align:left}
+#booking .section-title:after{margin-left:0}
+.info-box{border-left:0;background:transparent;padding:18px 0}
+.info-box p:nth-child(2){font-size:26px;color:#214b62;font-weight:700}
+.form-box{box-shadow:none;padding:24px}
+.access-grid{gap:34px;align-items:center}
+#access .section-title{text-align:left}
+#access .section-title:after{margin-left:0}
+.demo-map{min-height:300px}
+.contact-wrap{max-width:900px}
+.contact-info{margin-bottom:20px}
+.contact-wrap .form-box{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+.contact-wrap .form-box .field{margin-bottom:0}
+.contact-wrap .form-box .field:nth-of-type(4){grid-column:1 / -1}
+.contact-wrap .form-box .btn,.contact-wrap .form-box .note{grid-column:1 / -1}
+footer{padding-top:38px}
+.footer-grid{gap:30px}
+@media(max-width:767px){
+ .section{padding:52px 0}
+ .section-title{font-size:25px}
+ .hero{background:#fff;padding:28px 0 0}
+ .hero-grid{gap:26px}
+ .hero h1{font-size:31px}
+ .hero img{min-height:0;height:auto;border-radius:8px 8px 0 0}
+ #concept .section-title,#booking .section-title,#access .section-title{text-align:left}
+ .feature{min-height:0}
+ .service-visual{aspect-ratio:4/3}
+ .service-item{grid-template-columns:44px 1fr}
+ .faq{grid-template-columns:1fr}
+ .trainer{grid-template-columns:1fr}
+ .trainer-main{min-height:0;aspect-ratio:4/3}
+ .trainer-content{padding:20px}
+ .booking-grid{grid-template-columns:1fr}
+ .contact-wrap .form-box{display:block}
+ .contact-wrap .form-box .field{margin-bottom:18px}
+}
+
+</style>
+</head>
+<body>
+<header>
+ <div class="container header-inner">
+  <a class="logo" href="#top">カラダメイク GYM</a>
+  <nav class="desktop-nav" aria-label="メインナビゲーション">
+   <a href="#concept">Concept</a><a href="#features">Features</a><a href="#service">Service</a><a href="#trainer">Trainer</a><a href="#price">Price</a><a href="#faq">FAQ</a><a href="#access">Access</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="btn header-cta" href="#booking">体験トレーニング・カウンセリングを予約する</a>
+  <button class="menu-btn" aria-label="メニューを開く" aria-expanded="false">☰</button>
+ </div>
+ <nav class="mobile-menu" aria-label="スマートフォンメニュー">
+  <a href="#concept">Concept</a><a href="#features">Features</a><a href="#service">Service</a><a href="#trainer">Trainer</a><a href="#price">Price</a><a href="#faq">FAQ</a><a href="#access">Access</a><a href="#contact">Contact</a>
+  <a class="btn" href="#booking">体験トレーニング・カウンセリングを予約する</a>
+ </nav>
+</header>
+
+<main id="top">
+<section class="hero">
+ <div class="container hero-grid">
+  <div>
+   <h1>一人ひとりの目的に合わせた<br>パーソナルトレーニング</h1>
+   <p class="hero-copy">ダイエットやボディメイク、筋力・体力づくり、姿勢改善、健康維持まで。カラダメイク GYMでは、一人ひとりの身体の状態や目標に合わせて、無理なく続けられるトレーニングをご提案します。</p>
+   <div class="tags"><span class="tag">ダイエット</span><span class="tag">ボディメイク</span><span class="tag">筋力アップ</span><span class="tag">姿勢改善</span><span class="tag">運動不足</span><span class="tag">健康維持</span></div>
+   <p class="hero-note">初心者から経験者まで、それぞれのペースに合わせてサポートします。</p>
+   <a class="btn" href="#booking">体験トレーニング・カウンセリングを予約する</a>
+  </div>
+  <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1200&q=80" alt="トレーナーと利用者がトレーニングするイメージ">
+ </div>
+</section>
+
+<section class="section" id="concept">
+ <div class="container two-col">
+  <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80" alt="明るいジムでトレーニングするイメージ">
+  <div class="concept-copy">
+   <h2 class="section-title">自分の身体と向き合い、<br>無理なく続けられるトレーニングを。</h2>
+   <p>運動の目的や身体の状態、これまでの運動経験は人それぞれです。カラダメイク GYMでは、決まったメニューを一律に行うのではなく、一人ひとりの目標やペースに合わせて内容を組み立てます。</p>
+   <p>運動が初めての方には基本から丁寧に、経験のある方には目的に応じたトレーニングをご提案。日々の生活も含めて、無理なく運動を続けられるようサポートします。</p>
+  </div>
+ </div>
+</section>
+
+<section class="section bg-pale" id="features">
+ <div class="container">
+  <h2 class="section-title">カラダメイク GYMの特徴</h2>
+  <div class="features-grid">
+   <article class="card feature"><svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="16" cy="15" r="6"/><circle cx="32" cy="15" r="6"/><path d="M5 38c1-8 5-12 11-12s10 4 11 12M25 38c1-7 3-11 7-11 6 0 10 4 11 11"/></svg><h3>マンツーマン指導</h3><p>トレーナーが一人ひとりの動きを確認しながら指導します。フォームや負荷を調整し、それぞれのペースで取り組める環境を整えます。</p></article>
+   <article class="card feature"><svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 38V10h30v28zM15 18h18M15 25h18M15 32h11"/></svg><h3>オーダーメイドトレーニング</h3><p>目的や運動経験、身体の状態を確認したうえでメニューを作成します。進み具合に合わせて内容や負荷も見直します。</p></article>
+   <article class="card feature"><svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M24 40V21M24 26c-8 0-12-5-12-12 8 0 12 5 12 12ZM24 31c8 0 12-5 12-12-8 0-12 5-12 12Z"/></svg><h3>食事・生活習慣サポート</h3><p>トレーニングだけでなく、日々の食事や生活習慣についても無理のない範囲でアドバイスします。継続しやすい方法を一緒に考えます。</p></article>
+   <article class="card feature"><svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="24" cy="24" r="17"/><path d="M24 13v11l8 5"/></svg><h3>身体の悩み・目的に合わせた対応</h3><p>ダイエット、筋力づくり、姿勢や身体機能など、目的に合わせて内容を調整します。現在の状態を確認しながら進めます。</p></article>
+   <article class="card feature"><svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 25h7M33 25h7M15 19v12M33 19v12M15 25h18"/></svg><h3>初心者から経験者まで対応</h3><p>運動が初めての方には基本動作から丁寧にご案内します。経験者の方も、目的やレベルに合わせたトレーニングが可能です。</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="service">
+ <div class="container">
+  <h2 class="section-title">トレーニング・サービス</h2>
+  <img class="service-visual" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1400&q=80" alt="パーソナルトレーニングのイメージ">
+  <div class="service-list">
+   <div class="service-item"><span class="service-num">01</span><h3>パーソナルトレーニング</h3><p>身体の状態や目標を確認しながら、一人ひとりに合わせたトレーニングを行います。フォームや負荷を確認し、安全に配慮しながら進めます。</p></div>
+   <div class="service-item"><span class="service-num">02</span><h3>ダイエット・ボディメイク</h3><p>運動と生活習慣の両面から、継続しやすい身体づくりをサポートします。無理のないペースで取り組める内容をご提案します。</p></div>
+   <div class="service-item"><span class="service-num">03</span><h3>筋力・体力づくり</h3><p>基礎的な筋力や体力を身につけたい方に、レベルに合わせたメニューをご用意します。運動不足から始めたい方にも対応します。</p></div>
+   <div class="service-item"><span class="service-num">04</span><h3>姿勢・身体機能</h3><p>身体の動きや姿勢を確認し、ストレッチやトレーニングを組み合わせます。日常生活で身体を動かしやすくすることを目指します。</p></div>
+   <div class="service-item"><span class="service-num">05</span><h3>健康維持・運動習慣</h3><p>定期的に身体を動かす習慣づくりをサポートします。年齢や体力に合わせ、長く続けやすい運動を取り入れます。</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section bg-pale" id="cases">
+ <div class="container">
+  <h2 class="section-title">トレーニング事例</h2>
+  <p class="section-lead">目的や年代に合わせたトレーニング内容の一例をご紹介します。</p>
+  <div class="case-grid">
+   <article class="card case-card"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80" alt="筋力トレーニングを行う女性のイメージ"><div class="case-body"><span class="case-label">CASE 01</span><h3>20代・女性</h3><p><strong>目的：</strong>ダイエット・ボディメイク</p><p>基本フォームを確認しながら、取り組みやすい筋力トレーニングを行うケースです。</p><span class="demo-chip">架空事例</span></div></article>
+   <article class="card case-card"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80" alt="トレーニングを行う男性のイメージ"><div class="case-body"><span class="case-label">CASE 02</span><h3>30〜40代・男性</h3><p><strong>目的：</strong>筋力・体力づくり</p><p>運動不足の状態から、全身をバランスよくトレーニングしていくケースです。</p><span class="demo-chip">架空事例</span></div></article>
+   <article class="card case-card"><img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=80" alt="軽い運動に取り組む女性のイメージ"><div class="case-body"><span class="case-label">CASE 03</span><h3>50〜60代・女性</h3><p><strong>目的：</strong>運動不足・身体機能維持</p><p>ストレッチと軽めの筋力トレーニングを組み合わせ、運動習慣づくりに取り組むケースです。</p><span class="demo-chip">架空事例</span></div></article>
+  </div>
+  <p class="note">※上記はサービス内容を分かりやすく紹介するために作成した架空事例です。実在のお客様の事例ではありません。</p>
+ </div>
+</section>
+
+<section class="section" id="trainer">
+ <div class="container">
+  <h2 class="section-title">トレーナー</h2>
+  <p class="section-lead">目的や運動経験に合わせて、2名のトレーナーがサポートします。</p>
+  <div class="trainer-grid">
+   <article class="card trainer">
+    <img class="trainer-main" src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=900&q=80" alt="男性トレーナーのイメージ">
+    <div class="trainer-content">
+     <h3>高橋 健太</h3>
+     <p><strong>得意分野</strong></p>
+     <ul class="specialties"><li>筋力アップ</li><li>ダイエット</li><li>体力づくり</li><li>初心者指導</li></ul>
+     <p>トレーナー歴8年。パーソナルトレーナー関連資格を持ち、フィットネスクラブでの勤務経験があります。基本動作を大切にしながら、目的とレベルに合わせた指導を心がけています。</p>
+     <img class="trainer-scene" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80" alt="トレーナーが指導するイメージ">
+     <p class="note">※人物名・プロフィールは架空の設定です。</p>
+    </div>
+   </article>
+   <article class="card trainer">
+    <img class="trainer-main" src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=900&q=80" alt="女性トレーナーのイメージ">
+    <div class="trainer-content">
+     <h3>山本 美咲</h3>
+     <p><strong>得意分野</strong></p>
+     <ul class="specialties"><li>ダイエット</li><li>姿勢改善</li><li>健康維持</li><li>初心者指導</li></ul>
+     <p>トレーナー歴6年。パーソナルトレーナー関連資格を持ち、初心者の方へのサポート経験があります。運動への不安を確認しながら、無理なく続けられる指導を大切にしています。</p>
+     <img class="trainer-scene" src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=900&q=80" alt="トレーニング指導のイメージ">
+     <p class="note">※人物名・プロフィールは架空の設定です。</p>
+    </div>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section class="section bg-pale" id="price">
+ <div class="container">
+  <h2 class="section-title">料金プラン</h2>
+  <div class="price-grid">
+   <article class="card price-card"><h3>月4回</h3><p class="price">30,000円<small> / 月</small></p></article>
+   <article class="card price-card"><h3>月8回</h3><p class="price">55,000円<small> / 月</small></p></article>
+   <article class="card price-card"><h3>月12回</h3><p class="price">75,000円<small> / 月</small></p></article>
+  </div>
+  <table class="price-table"><tbody><tr><th>入会金</th><td>11,000円</td></tr><tr><th>支払い方法</th><td>クレジットカード / 現金 / 銀行振込</td></tr><tr><th>変更・キャンセル</th><td>前日まで無料。当日キャンセル・無断キャンセルは1回分消化となります。</td></tr><tr><th>繰り越し</th><td>月内消化。翌月への繰り越しはありません。</td></tr></tbody></table>
+  <p class="note">※掲載している料金・条件は、この架空デモサイトのために設定したものです。</p>
+ </div>
+</section>
+
+<section class="section" id="faq">
+ <div class="container">
+  <h2 class="section-title">よくあるご質問</h2>
+  <div class="faq">
+   <div class="faq-item"><button class="faq-q"><span>運動経験がなくても大丈夫ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。運動が初めての方には、基本的な動きやフォームから丁寧にご案内します。体力や経験に合わせて内容を調整します。</div></div>
+   <div class="faq-item"><button class="faq-q"><span>どのような服装で行けばよいですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">動きやすい服装でお越しください。トレーニングウェアやTシャツ、運動しやすいパンツなどがおすすめです。</div></div>
+   <div class="faq-item"><button class="faq-q"><span>持ち物は何が必要ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">運動しやすい服装、室内用シューズ、タオル、飲み物などをご用意ください。</div></div>
+   <div class="faq-item"><button class="faq-q"><span>追加料金はかかりますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">基本の月額料金のほか、入会時に入会金11,000円が必要です。ご不明な点は事前にお問い合わせください。</div></div>
+   <div class="faq-item"><button class="faq-q"><span>支払い方法を教えてください。</span><span class="faq-symbol">＋</span></button><div class="faq-a">クレジットカード、現金、銀行振込に対応しています。</div></div>
+   <div class="faq-item"><button class="faq-q"><span>トレーニングは予約が必要ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。マンツーマンでのご案内となるため、事前にご予約をお願いしています。</div></div>
+   <div class="faq-item"><button class="faq-q"><span>予約の変更・キャンセルはできますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">前日までの変更・キャンセルは無料です。当日キャンセル・無断キャンセルは1回分消化となります。</div></div>
+   <div class="faq-item"><button class="faq-q"><span>体力に自信がなくても大丈夫ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。現在の体力や身体の状態を確認し、無理のない強度から始めます。気になることがあれば事前にご相談ください。</div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section bg-pale" id="booking">
+ <div class="container">
+  <h2 class="section-title">体験トレーニング・カウンセリング予約</h2>
+  <div class="booking-grid">
+   <div>
+    <p>トレーニングの内容や通い方について、まずは体験トレーニング・カウンセリングでご相談ください。</p>
+    <div class="info-box"><p><strong>電話</strong></p><p>000-0000-0000</p><p><strong>営業時間</strong></p><p>9:00〜22:00（月曜定休）</p></div>
+    <p class="note">※電話番号は架空・デモ用です。</p>
+   </div>
+   <form class="form-box demo-form">
+    <div class="field"><label for="r-name">お名前</label><input id="r-name" type="text" required></div>
+    <div class="field"><label for="r-mail">メールアドレス</label><input id="r-mail" type="email" required></div>
+    <div class="field"><label for="r-tel">電話番号</label><input id="r-tel" type="tel"></div>
+    <div class="field"><label for="r-date">希望日時</label><input id="r-date" type="datetime-local"></div>
+    <div class="field"><label for="r-type">希望内容</label><select id="r-type"><option>体験トレーニング</option><option>カウンセリング</option><option>両方</option></select></div>
+    <div class="field"><label for="r-msg">相談内容</label><textarea id="r-msg"></textarea></div>
+    <button class="btn" type="submit">予約内容を確認する</button>
+    <p class="note">※このフォームはデモ用のため、実際には送信されません。</p>
+   </form>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="access">
+ <div class="container">
+  <h2 class="section-title">アクセス</h2>
+  <div class="access-grid">
+   <div>
+    <p>お車で通いやすい郊外型のパーソナルジムです。店舗前に専用駐車場を6台ご用意しています。</p>
+    <ul class="access-list"><li><strong>住所：</strong>愛媛県西予市宇和町フィットネス1-2-3</li><li><strong>営業時間：</strong>9:00〜22:00</li><li><strong>定休日：</strong>月曜日</li><li><strong>駐車場：</strong>6台</li></ul>
+    <p class="note">※住所は架空の設定です。実在する店舗・住所ではありません。</p>
+   </div>
+   <div><div class="demo-map" aria-label="架空のデモ地図"><span>DEMO MAP</span></div><p class="note">※地図は説明用の架空グラフィックです。</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section bg-pale" id="contact">
+ <div class="container contact-wrap">
+  <h2 class="section-title">お問い合わせ</h2>
+  <div class="contact-info"><p>サービス内容や料金など、一般的なお問い合わせはこちらからご連絡ください。</p><p><strong>電話：</strong>000-0000-0000　<strong>メール：</strong>info@example.com</p></div>
+  <form class="form-box demo-form">
+   <div class="field"><label for="c-name">お名前</label><input id="c-name" type="text" required></div>
+   <div class="field"><label for="c-mail">メールアドレス</label><input id="c-mail" type="email" required></div>
+   <div class="field"><label for="c-tel">電話番号（任意）</label><input id="c-tel" type="tel"></div>
+   <div class="field"><label for="c-msg">お問い合わせ内容</label><textarea id="c-msg" required></textarea></div>
+   <button class="btn" type="submit">お問い合わせはこちら</button>
+   <p class="note">※このフォームはデモ用のため、実際には送信されません。</p>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container">
+  <div class="footer-grid">
+   <div><div class="footer-logo">カラダメイク GYM</div><p>パーソナルトレーニングを紹介する架空のデモサイトです。</p></div>
+   <nav class="footer-nav"><a href="#concept">Concept</a><a href="#features">Features</a><a href="#service">Service</a><a href="#trainer">Trainer</a><a href="#price">Price</a><a href="#faq">FAQ</a><a href="#access">Access</a><a href="#contact">Contact</a></nav>
+   <div class="footer-meta"><p>愛媛県西予市宇和町フィットネス1-2-3</p><p>営業時間 9:00〜22:00</p><p>定休日 月曜日</p><p>000-0000-0000</p></div>
+  </div>
+  <div class="copyright">© 2026 カラダメイク GYM. This is a fictional demo website.</div>
+ </div>
+</footer>
+
+<script>
+const menuBtn=document.querySelector('.menu-btn');
+const mobileMenu=document.querySelector('.mobile-menu');
+menuBtn.addEventListener('click',()=>{
+ const open=mobileMenu.classList.toggle('open');
+ menuBtn.setAttribute('aria-expanded',open);
+ menuBtn.textContent=open?'×':'☰';
+});
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+ mobileMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰';
+}));
+document.querySelectorAll('.faq-q').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+  const item=btn.closest('.faq-item');
+  const open=item.classList.toggle('open');
+  btn.querySelector('.faq-symbol').textContent=open?'−':'＋';
+ });
+});
+document.querySelectorAll('.demo-form').forEach(form=>{
+ form.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert('このフォームはデモ用のため、実際には送信されません。');
+ });
+});
+</script>
+</body>
+</html>
