@@ -23,14 +23,15 @@ header{background:#fff;border-bottom:1px solid #edf1f3}.header-inner{height:82px
 .case-grid,.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.case-card{overflow:hidden}.case-card img{border-radius:8px 8px 0 0;aspect-ratio:4/3}.case-body{padding:24px}.case-label{font-weight:700;color:var(--main);font-size:14px}.case-body h3{margin:4px 0 10px}.case-body p{margin:5px 0}.demo-chip{display:inline-block;margin-top:12px;padding:3px 8px;background:var(--pale);font-size:12px;border-radius:4px}
 .trainer-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}.trainer{padding:24px}.trainer-main{aspect-ratio:4/3;margin-bottom:20px}.trainer h3{font-size:24px;margin:0 0 8px}.specialties{margin:12px 0 18px;padding-left:1.2em}.trainer-scene{aspect-ratio:4/3;margin-top:18px}
 .price-card{padding:28px;text-align:center}.price-card h3{margin:0 0 12px}.price{font-size:30px;font-weight:700;color:var(--dark);margin:0}.price small{font-size:14px;font-weight:400}.price-table{width:100%;border-collapse:collapse;margin-top:32px;background:#fff}.price-table th,.price-table td{border:1px solid var(--line);padding:14px;text-align:left;vertical-align:top}.price-table th{width:180px;background:#f8fafb}
-.faq{border-top:1px solid var(--line)}.faq-item{border-bottom:1px solid var(--line)}.faq-q{width:100%;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:20px 4px;background:#fff;border:0;text-align:left;font-weight:600;color:var(--text)}.faq-symbol{font-size:24px;color:var(--main)}.faq-a{display:none;padding:0 42px 20px 4px}.faq-item.open .faq-a{display:block}
+.faq{border-top:1px solid var(--line)}.faq-item{border-bottom:1px solid var(--line)}.faq-q{width:100%;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:20px 4px;background:#fff;border:0;text-align:left;font-weight:600;color:var(--text)}.faq-symbol{position:relative;display:block;flex:0 0 24px;width:24px;height:42px;color:var(--main);font-size:0}.faq-symbol::before,.faq-symbol::after{content:"";position:absolute;top:50%;left:50%;width:12px;height:2px;background:currentColor;transform:translate(-50%,-50%)}.faq-symbol::after{transform:translate(-50%,-50%) rotate(90deg)}.faq-item.open .faq-symbol::after{display:none}.faq-a{max-height:0;overflow:hidden;padding:0 42px 0 4px;transition:max-height .25s ease,padding-bottom .25s ease}.faq-item.open .faq-a{max-height:12em;padding-bottom:20px}
+.mobile-only{display:none}
 .booking-grid{display:grid;grid-template-columns:2fr 3fr;gap:50px;align-items:start}.info-box{padding:24px;background:#fff;border-left:4px solid var(--main)}.info-box p{margin:4px 0}.form-box{background:#fff;border:1px solid var(--line);padding:28px;border-radius:8px}.field{margin-bottom:18px}.field label{display:block;font-weight:600;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid #bdcbd1;border-radius:4px;background:#fff}.field textarea{min-height:120px;resize:vertical}.form-box .btn{width:100%}
 .access-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}.access-list{margin:24px 0 0;padding:0;list-style:none}.access-list li{padding:10px 0;border-bottom:1px solid var(--line)}.demo-map{min-height:330px;border:1px solid #bdcbd1;border-radius:8px;background:linear-gradient(32deg,transparent 47%,#d7e2e6 48%,#d7e2e6 52%,transparent 53%),linear-gradient(145deg,transparent 44%,#d7e2e6 45%,#d7e2e6 49%,transparent 50%),#f7fafb;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.demo-map span{background:#fff;border:2px solid var(--main);padding:12px 18px;border-radius:6px;font-weight:700;color:var(--dark)}
 .contact-wrap{max-width:760px;margin:auto}.contact-info{text-align:center;margin-bottom:28px}.contact-wrap .section-title{text-align:center}.contact-wrap .section-title:after{margin:14px auto 0}
 footer{background:var(--dark);color:#fff;padding:52px 0 24px}.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:40px}.footer-logo{font-size:22px;font-weight:700}.footer-nav{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}.footer-meta p{margin:3px 0}.copyright{border-top:1px solid rgba(255,255,255,.25);margin-top:36px;padding-top:18px;font-size:13px;color:#e6eef1}
 @media(max-width:767px){
- .section{padding:56px 0}.section-title{font-size:26px;margin-bottom:32px}.desktop-nav,.header-inner>.header-cta{display:none}.header-inner{height:68px}.menu-btn{display:block;margin-left:auto;width:44px;height:40px;border:0;background:#fff;font-size:26px;color:var(--dark)}.mobile-menu{background:#fff;border-top:1px solid var(--line);padding:12px 20px 20px}.mobile-menu.open{display:block}.mobile-menu a{display:block;padding:10px 0;border-bottom:1px solid #edf1f3}.mobile-menu .btn{margin-top:16px;border-bottom:0}
- .hero{padding:38px 0 56px}.hero-grid{min-height:0;grid-template-columns:1fr;gap:34px}.hero h1{font-size:32px}.hero img{order:2}.two-col{grid-template-columns:1fr;gap:28px}.concept-copy{display:contents}.concept-copy .section-title{order:-2}.two-col img{order:-1}
+ .section{padding:56px 0}.section-title{font-size:26px;margin-bottom:32px}.desktop-nav,.header-inner>.header-cta{display:none}.header-inner{height:68px}.menu-btn{display:block;margin-left:auto;width:44px;height:40px;border:0;background:#fff;font-size:26px;color:var(--dark)}header{position:relative;z-index:20}.mobile-menu{position:absolute;top:100%;left:0;right:0;z-index:10;background-color:#fff;border-top:1px solid var(--line);padding:12px 20px 20px}.mobile-menu.open{display:block}.mobile-menu.open::after{content:"";position:fixed;inset:77px 0 0;z-index:-1;background:#fff}.mobile-menu a{display:block;padding:10px 0;border-bottom:1px solid #edf1f3}.mobile-menu .btn{margin-top:16px;border-bottom:0}
+ .hero{padding:38px 0 56px}.hero-grid{min-height:0;grid-template-columns:1fr;gap:34px}.hero h1{font-size:32px}.mobile-only{display:block}.hero img{order:2}.two-col{grid-template-columns:1fr;gap:28px}.concept-copy{display:contents}.concept-copy .section-title{order:-1}.two-col img{order:-2}
  .features-grid{grid-template-columns:1fr;gap:24px}.feature,.feature:nth-child(4),.feature:nth-child(5){grid-column:auto}
  .service-visual{aspect-ratio:4/3}.service-item{grid-template-columns:52px 1fr;gap:12px}.service-item p{grid-column:2}
  .case-grid,.trainer-grid,.price-grid,.booking-grid,.access-grid,.footer-grid{grid-template-columns:1fr;gap:24px}.price-table th{width:105px}.price-table th,.price-table td{padding:10px}
@@ -125,13 +126,23 @@ footer{padding-top:38px}
  .feature{min-height:0}
  .service-visual{aspect-ratio:4/3}
  .service-item{grid-template-columns:44px 1fr}
- .faq{grid-template-columns:1fr}
+ .faq{display:flex;flex-direction:column}
+ .faq-column{display:contents}
+ .faq-column:first-child .faq-item:nth-child(1){order:1}
+ .faq-column:last-child .faq-item:nth-child(1){order:2}
+ .faq-column:first-child .faq-item:nth-child(2){order:3}
+ .faq-column:last-child .faq-item:nth-child(2){order:4}
+ .faq-column:first-child .faq-item:nth-child(3){order:5}
+ .faq-column:last-child .faq-item:nth-child(3){order:6}
+ .faq-column:first-child .faq-item:nth-child(4){order:7}
+ .faq-column:last-child .faq-item:nth-child(4){order:8}
  .trainer{grid-template-columns:1fr}
  .trainer-main{min-height:0;aspect-ratio:4/3}
  .trainer-content{padding:20px}
  .booking-grid{grid-template-columns:1fr}
  .contact-wrap .form-box{display:block}
  .contact-wrap .form-box .field{margin-bottom:18px}
+ .booking-keep-word{white-space:nowrap}
 }
 
 </style>
@@ -156,7 +167,7 @@ footer{padding-top:38px}
 <section class="hero">
  <div class="container hero-grid">
   <div>
-   <h1>一人ひとりの目的に合わせた<br>パーソナルトレーニング</h1>
+    <h1>一人ひとりの目的に<br class="mobile-only">合わせた<br>パーソナルトレーニング</h1>
    <p class="hero-copy">ダイエットやボディメイク、筋力・体力づくり、姿勢改善、健康維持まで。カラダメイク GYMでは、一人ひとりの身体の状態や目標に合わせて、無理なく続けられるトレーニングをご提案します。</p>
    <div class="tags"><span class="tag">ダイエット</span><span class="tag">ボディメイク</span><span class="tag">筋力アップ</span><span class="tag">姿勢改善</span><span class="tag">運動不足</span><span class="tag">健康維持</span></div>
    <p class="hero-note">初心者から経験者まで、それぞれのペースに合わせてサポートします。</p>
@@ -265,21 +276,25 @@ footer{padding-top:38px}
  <div class="container">
   <h2 class="section-title">よくあるご質問</h2>
   <div class="faq">
-   <div class="faq-item"><button class="faq-q"><span>運動経験がなくても大丈夫ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。運動が初めての方には、基本的な動きやフォームから丁寧にご案内します。体力や経験に合わせて内容を調整します。</div></div>
-   <div class="faq-item"><button class="faq-q"><span>どのような服装で行けばよいですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">動きやすい服装でお越しください。トレーニングウェアやTシャツ、運動しやすいパンツなどがおすすめです。</div></div>
-   <div class="faq-item"><button class="faq-q"><span>持ち物は何が必要ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">運動しやすい服装、室内用シューズ、タオル、飲み物などをご用意ください。</div></div>
-   <div class="faq-item"><button class="faq-q"><span>追加料金はかかりますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">基本の月額料金のほか、入会時に入会金11,000円が必要です。ご不明な点は事前にお問い合わせください。</div></div>
-   <div class="faq-item"><button class="faq-q"><span>支払い方法を教えてください。</span><span class="faq-symbol">＋</span></button><div class="faq-a">クレジットカード、現金、銀行振込に対応しています。</div></div>
-   <div class="faq-item"><button class="faq-q"><span>トレーニングは予約が必要ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。マンツーマンでのご案内となるため、事前にご予約をお願いしています。</div></div>
-   <div class="faq-item"><button class="faq-q"><span>予約の変更・キャンセルはできますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">前日までの変更・キャンセルは無料です。当日キャンセル・無断キャンセルは1回分消化となります。</div></div>
-   <div class="faq-item"><button class="faq-q"><span>体力に自信がなくても大丈夫ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。現在の体力や身体の状態を確認し、無理のない強度から始めます。気になることがあれば事前にご相談ください。</div></div>
+    <div class="faq-column">
+     <div class="faq-item"><button class="faq-q"><span>運動経験がなくても大丈夫ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。運動が初めての方には、基本的な動きやフォームから丁寧にご案内します。体力や経験に合わせて内容を調整します。</div></div>
+     <div class="faq-item"><button class="faq-q"><span>持ち物は何が必要ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">運動しやすい服装、室内用シューズ、タオル、飲み物などをご用意ください。</div></div>
+     <div class="faq-item"><button class="faq-q"><span>支払い方法を教えてください。</span><span class="faq-symbol">＋</span></button><div class="faq-a">クレジットカード、現金、銀行振込に対応しています。</div></div>
+     <div class="faq-item"><button class="faq-q"><span>予約の変更・キャンセルはできますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">前日までの変更・キャンセルは無料です。当日キャンセル・無断キャンセルは1回分消化となります。</div></div>
+    </div>
+    <div class="faq-column">
+     <div class="faq-item"><button class="faq-q"><span>どのような服装で行けばよいですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">動きやすい服装でお越しください。トレーニングウェアやTシャツ、運動しやすいパンツなどがおすすめです。</div></div>
+     <div class="faq-item"><button class="faq-q"><span>追加料金はかかりますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">基本の月額料金のほか、入会時に入会金11,000円が必要です。ご不明な点は事前にお問い合わせください。</div></div>
+     <div class="faq-item"><button class="faq-q"><span>トレーニングは予約が必要ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。マンツーマンでのご案内となるため、事前にご予約をお願いしています。</div></div>
+     <div class="faq-item"><button class="faq-q"><span>体力に自信がなくても大丈夫ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。現在の体力や身体の状態を確認し、無理のない強度から始めます。気になることがあれば事前にご相談ください。</div></div>
+    </div>
   </div>
  </div>
 </section>
 
 <section class="section bg-pale" id="booking">
  <div class="container">
-  <h2 class="section-title">体験トレーニング・カウンセリング予約</h2>
+  <h2 class="section-title">体験トレーニング・<span class="booking-keep-word">カウンセリング</span>予約</h2>
   <div class="booking-grid">
    <div>
     <p>トレーニングの内容や通い方について、まずは体験トレーニング・カウンセリングでご相談ください。</p>
