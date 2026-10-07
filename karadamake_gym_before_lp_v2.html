@@ -80,6 +80,7 @@ header{box-shadow:0 1px 0 rgba(52,88,107,.08)}
 .case-body p{font-size:14px;line-height:1.65}
 .trainer-grid{gap:18px}
 .trainer{padding:0;overflow:hidden;display:grid;grid-template-columns:42% 58%;align-items:stretch}
+.trainer-main-frame{display:contents}
 .trainer-main{height:100%;min-height:330px;margin:0;border-radius:0;object-position:center top}
 .trainer-content{padding:22px}
 .trainer h3{font-size:22px;color:#214b62;margin-bottom:4px}
@@ -141,6 +142,8 @@ footer{padding-top:38px}
  .faq-column:last-child .faq-item:nth-child(4){order:8}
  .trainer{grid-template-columns:1fr}
  .trainer-main{min-height:0;aspect-ratio:4/3}
+ .trainer-main-frame{display:block;height:clamp(190px,58vw,230px);overflow:hidden}
+ .trainer-main-frame .trainer-main{width:100%;height:100%;min-height:0;aspect-ratio:auto;object-fit:cover;object-position:center 18%;transform:scale(1.25);transform-origin:center 25%}
  .trainer-content{padding:20px}
  .booking-grid{grid-template-columns:1fr}
  .contact-wrap .form-box{display:block}
@@ -277,7 +280,9 @@ footer{padding-top:38px}
     </div>
    </article>
    <article class="card trainer">
-    <img class="trainer-main" src="./assets/images/trainer-sato.webp" alt="男性トレーナーのイメージ">
+    <div class="trainer-main-frame">
+     <img class="trainer-main" src="./assets/images/trainer-sato.webp" alt="男性トレーナーのイメージ">
+    </div>
     <div class="trainer-content">
      <h3>佐藤 直樹</h3>
      <p><strong>得意分野</strong></p>
