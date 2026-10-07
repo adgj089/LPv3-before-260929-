@@ -87,6 +87,9 @@ header{box-shadow:0 1px 0 rgba(52,88,107,.08)}
 .trainer .specialties li{font-size:12px;padding:4px 8px;background:#eef6f9;border-radius:4px;color:#315d72}
 .trainer-content p{font-size:14px;line-height:1.7}
 .trainer-scene{aspect-ratio:16/9;margin-top:12px}
+@media(min-width:768px){
+ .trainer-grid .trainer:nth-child(3){grid-column:1 / -1;width:calc((100% - 18px)/2);justify-self:center}
+}
 .price-grid{gap:18px}
 .price-card{padding:22px 18px}
 .price-card h3{color:#244f66}
@@ -249,7 +252,7 @@ footer{padding-top:38px}
 <section class="section" id="trainer">
  <div class="container">
   <h2 class="section-title">トレーナー</h2>
-  <p class="section-lead">目的や運動経験に合わせて、2名のトレーナーがサポートします。</p>
+  <p class="section-lead">目的や運動経験に合わせて、3名のトレーナーがサポートします。</p>
   <div class="trainer-grid">
    <article class="card trainer">
     <img class="trainer-main" src="./assets/images/trainer-takahashi.webp" alt="男性トレーナーのイメージ">
@@ -270,6 +273,17 @@ footer{padding-top:38px}
      <ul class="specialties"><li>ダイエット</li><li>姿勢改善</li><li>健康維持</li><li>初心者指導</li></ul>
      <p>トレーナー歴6年。パーソナルトレーナー関連資格を持ち、初心者の方へのサポート経験があります。運動への不安を確認しながら、無理なく続けられる指導を大切にしています。</p>
      <img class="trainer-scene" src="./assets/images/trainer-yamamoto-scene.webp" alt="トレーニング指導のイメージ">
+     <p class="note">※人物名・プロフィールは架空の設定です。</p>
+    </div>
+   </article>
+   <article class="card trainer">
+    <img class="trainer-main" src="./assets/images/trainer-sato.webp" alt="男性トレーナーのイメージ">
+    <div class="trainer-content">
+     <h3>佐藤 直樹</h3>
+     <p><strong>得意分野</strong></p>
+     <ul class="specialties"><li>健康維持</li><li>身体機能</li><li>運動習慣</li><li>初心者指導</li></ul>
+     <p>トレーナー歴10年。健康維持や身体機能の維持、運動習慣づくりを中心に、初心者や中高年の方にも無理のないペースで取り組める指導を大切にしています。</p>
+     <img class="trainer-scene" src="./assets/images/trainer-sato-scene.webp" alt="トレーナーが運動指導するイメージ">
      <p class="note">※人物名・プロフィールは架空の設定です。</p>
     </div>
    </article>
