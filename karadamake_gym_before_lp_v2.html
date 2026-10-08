@@ -164,6 +164,10 @@ footer{padding-top:38px}
 #flow{border-bottom:1px solid var(--line)}
 @media(min-width:768px) and (max-width:1023px){#flow .flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:767px){#flow .flow-grid{grid-template-columns:1fr;gap:16px}#flow .flow-step{padding:20px}}
+/* Sticky Header and anchor offsets: scoped after responsive rules. */
+header{position:sticky;top:0;z-index:20}
+html{scroll-padding-top:90px}
+@media(max-width:1100px){html{scroll-padding-top:80px}}
 </style>
 </head>
 <body>
