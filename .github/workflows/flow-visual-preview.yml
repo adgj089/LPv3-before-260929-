@@ -89,12 +89,23 @@ jobs:
                 check('desktop_nav_visible',await page.locator('.desktop-nav').isVisible(),{});
                 await page.locator('.header-inner > a[href="#booking"]').click();
               }
-              await page.waitForTimeout(900);
+              // Wait for smooth scrolling to settle rather than assuming a fixed duration.
+              await page.waitForFunction(()=>{
+                const now=performance.now(),y=window.scrollY;
+                const state=window.__bookingQAScrollState;
+                if(!state||Math.abs(state.y-y)>0.5){
+                  window.__bookingQAScrollState={y,since:now};
+                  return false;
+                }
+                return now-state.since>=300;
+              },null,{timeout:10000,polling:100});
               const anchorInfo=await page.evaluate(()=>{
                 const h=document.querySelector('header').getBoundingClientRect(),b=document.querySelector('#booking').getBoundingClientRect();
-                return {hash:location.hash,headerBottom:h.bottom,bookingTop:b.top,scrollY:scrollY,overflow:document.documentElement.scrollWidth>innerWidth};
+                const maxScroll=Math.max(0,document.documentElement.scrollHeight-innerHeight);
+                return {hash:location.hash,headerBottom:h.bottom,bookingTop:b.top,bookingBottom:b.bottom,viewportHeight:innerHeight,scrollY:scrollY,maxScroll,overflow:document.documentElement.scrollWidth>innerWidth};
               });
-              check('booking_anchor',anchorInfo.hash==='#booking'&&anchorInfo.bookingTop>=anchorInfo.headerBottom-3&&anchorInfo.scrollY>0,anchorInfo);
+              const bookingInView=anchorInfo.bookingTop>=anchorInfo.headerBottom-3&&anchorInfo.bookingTop<=anchorInfo.viewportHeight-40;
+              check('booking_anchor',anchorInfo.hash==='#booking'&&anchorInfo.scrollY>0&&bookingInView,anchorInfo);
               check('no_document_overflow',!anchorInfo.overflow,anchorInfo);
               await page.screenshot({path:'flow-qa/header-booking-'+width+'.png'});
             }catch(error){
