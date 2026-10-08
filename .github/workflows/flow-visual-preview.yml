@@ -36,6 +36,23 @@ jobs:
               const rects=cards.map(c=>{const b=c.getBoundingClientRect();return {left:b.left,right:b.right,top:b.top,bottom:b.bottom,scrollWidth:c.scrollWidth,clientWidth:c.clientWidth}});
               return {width:innerWidth,columns:getComputedStyle(grid).gridTemplateColumns,documentOverflow:document.documentElement.scrollWidth>innerWidth,flowOverflow:flow.scrollWidth>flow.clientWidth,cardOverflow:cards.some(c=>c.scrollWidth>c.clientWidth),rects};
             });
+            const headerInfo=await page.evaluate(()=>{
+              const root=document.documentElement;
+              const rect=(selector)=>{
+                const el=document.querySelector(selector);
+                if(!el)return null;
+                const r=el.getBoundingClientRect(),style=getComputedStyle(el);
+                return {selector,display:style.display,position:style.position,whiteSpace:style.whiteSpace,left:+r.left.toFixed(1),right:+r.right.toFixed(1),width:+r.width.toFixed(1),scrollWidth:el.scrollWidth,clientWidth:el.clientWidth};
+              };
+              const vw=root.clientWidth;
+              const offenders=[...document.querySelectorAll('body *')].filter(el=>{
+                const s=getComputedStyle(el);if(s.display==='none'||s.visibility==='hidden')return false;
+                const r=el.getBoundingClientRect();
+                return r.width>0&&(r.right>vw+1||r.left< -1);
+              }).map(el=>{const r=el.getBoundingClientRect();return {tag:el.tagName,className:typeof el.className==='string'?el.className.slice(0,100):'',id:el.id,left:+r.left.toFixed(1),right:+r.right.toFixed(1),width:+r.width.toFixed(1)};}).slice(0,35);
+              return {innerWidth,clientWidth:vw,scrollWidth:root.scrollWidth,media767:matchMedia('(max-width:767px)').matches,media1023:matchMedia('(max-width:1023px)').matches,header:rect('header'),headerInner:rect('.header-inner'),logo:rect('.logo'),nav:rect('.desktop-nav'),cta:rect('.header-inner > .header-cta'),menuButton:rect('.menu-btn'),offenders};
+            });
+            info.headerDiagnostics=headerInfo;
             results.push(info);
             await page.close();
           }
