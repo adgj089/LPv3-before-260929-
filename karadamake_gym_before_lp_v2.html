@@ -149,22 +149,10 @@ footer{padding-top:38px}
  .booking-keep-word{white-space:nowrap}
 }
 
-@media(min-width:901px) and (max-width:1100px){
- .header-inner{gap:14px}
- .logo{font-size:19px}
- .desktop-nav{gap:11px;font-size:12px}
- .header-cta{font-size:11px;padding-inline:10px;white-space:nowrap}
-}
-@media(min-width:980px) and (max-width:1060px){
- .header-inner{gap:0;justify-content:space-between}
- .desktop-nav{margin-left:0;gap:10px}
- .header-cta{padding-inline:6px}
-}
-@media(min-width:768px) and (max-width:900px){
- .header-inner{gap:8px}
- .logo{font-size:16px}
- .desktop-nav{gap:6px;font-size:10.5px}
- .header-cta{font-size:10px;padding-inline:8px;white-space:nowrap}
+/* Header: use the existing mobile navigation from 1100px down to 768px.
+   The <=767px layout rules above remain unchanged. */
+@media(min-width:768px) and (max-width:1100px){
+  .desktop-nav,.header-inner>.header-cta{display:none}.header-inner{height:68px}.menu-btn{display:block;margin-left:auto;width:44px;height:40px;border:0;background:#fff;font-size:26px;color:var(--dark)}header{position:relative;z-index:20}.mobile-menu{position:absolute;top:100%;left:0;right:0;z-index:10;background-color:#fff;border-top:1px solid var(--line);padding:12px 20px 20px}.mobile-menu.open{display:block}.mobile-menu.open::after{content:"";position:fixed;inset:77px 0 0;z-index:-1;background:#fff}.mobile-menu a{display:block;padding:10px 0;border-bottom:1px solid #edf1f3}.mobile-menu .btn{margin-top:16px;border-bottom:0}
 }
 
 /* Flow: informational four-step guide */
