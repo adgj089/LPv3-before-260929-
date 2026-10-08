@@ -1,0 +1,48 @@
+name: Flow Visual Preview
+on:
+  push:
+    branches: [before-step3-settings-261007]
+    paths: ['.github/workflows/flow-visual-preview.yml']
+  workflow_dispatch:
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - name: Capture Flow at viewport sizes
+        run: |
+          cat > /tmp/flow-preview.mjs <<'EOF'
+          import { chromium } from '${process.env.GITHUB_WORKSPACE}/node_modules/playwright/index.mjs';
+          import fs from 'node:fs';
+          const browser = await chromium.launch({headless:true});
+          fs.mkdirSync('flow-qa',{recursive:true});
+          const results=[];
+          for(const width of [1440,1024,834,768,767,390,320]){
+            const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+            await page.goto('file://' + process.env.GITHUB_WORKSPACE + '/karadamake_gym_before_lp_v2.html');
+            await page.locator('#flow').scrollIntoViewIfNeeded();
+            await page.locator('#flow').screenshot({path:'flow-qa/flow-'+width+'.png'});
+            const info=await page.evaluate(()=>{
+              const flow=document.querySelector('#flow'),grid=flow.querySelector('.flow-grid'),cards=[...flow.querySelectorAll('.flow-step')],r=grid.getBoundingClientRect();
+              const rects=cards.map(c=>{const b=c.getBoundingClientRect();return {left:b.left,right:b.right,top:b.top,bottom:b.bottom,scrollWidth:c.scrollWidth,clientWidth:c.clientWidth}});
+              return {width:innerWidth,columns:getComputedStyle(grid).gridTemplateColumns,documentOverflow:document.documentElement.scrollWidth>innerWidth,flowOverflow:flow.scrollWidth>flow.clientWidth,cardOverflow:cards.some(c=>c.scrollWidth>c.clientWidth),rects};
+            });
+            results.push(info);
+            await page.close();
+          }
+          fs.writeFileSync('flow-qa/diagnostics.json',JSON.stringify(results,null,2));
+          await browser.close();
+          EOF
+          node /tmp/flow-preview.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: flow-visual-preview
+          path: flow-qa/
+          retention-days: 7
