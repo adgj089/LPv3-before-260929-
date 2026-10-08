@@ -164,6 +164,11 @@ footer{padding-top:38px}
 #flow{border-bottom:1px solid var(--line)}
 @media(min-width:768px) and (max-width:1023px){#flow .flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:767px){#flow .flow-grid{grid-template-columns:1fr;gap:16px}#flow .flow-step{padding:20px}}
+/* Sato trainer only: stack photo above profile at widths 768px and up. */
+@media(min-width:768px){
+ .trainer-grid .trainer:nth-child(3){grid-template-columns:1fr}
+ .trainer-grid .trainer:nth-child(3) .trainer-main{height:auto;min-height:0;aspect-ratio:4/3}
+}
 /* Sticky Header and anchor offsets: scoped after responsive rules. */
 header{position:sticky;top:0;z-index:20}
 html{scroll-padding-top:90px}
