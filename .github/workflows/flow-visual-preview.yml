@@ -56,6 +56,58 @@ jobs:
             results.push(info);
             await page.close();
           }
+          // Non-destructive interaction QA: browser actions only; do not edit LP.
+          const interactionResults=[];
+          for(const width of [1440,1101,1100,768,390,320]){
+            const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+            const test={width,checks:[],errors:[]};
+            const check=(name,pass,detail)=>test.checks.push({name,status:pass?'PASS':'FAIL',detail});
+            try{
+              await page.goto('file://' + process.env.GITHUB_WORKSPACE + '/karadamake_gym_before_lp_v2.html');
+              const isMobile=width<=1100;
+              const before=await page.locator('header').boundingBox();
+              await page.evaluate(()=>window.scrollTo({top:Math.min(1200,document.documentElement.scrollHeight-900),behavior:'instant'}));
+              await page.waitForTimeout(250);
+              const after=await page.locator('header').boundingBox();
+              const sticky=await page.locator('header').evaluate(e=>getComputedStyle(e).position);
+              check('sticky_after_scroll',sticky==='sticky'&&Math.abs(after.y)<=2&&before.y>=-1,{position:sticky,beforeY:before.y,afterY:after.y});
+              await page.screenshot({path:'flow-qa/header-scrolled-'+width+'.png'});
+              await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+              await page.waitForTimeout(150);
+              if(isMobile){
+                const menu=page.locator('.menu-btn'),nav=page.locator('.mobile-menu');
+                check('menu_button_visible',await menu.isVisible(),{});
+                await menu.click();
+                check('menu_opens',(await nav.isVisible())&&(await menu.getAttribute('aria-expanded'))==='true',{expanded:await menu.getAttribute('aria-expanded')});
+                await page.screenshot({path:'flow-qa/header-menu-open-'+width+'.png'});
+                await menu.click();
+                check('menu_closes',!(await nav.isVisible())&&(await menu.getAttribute('aria-expanded'))==='false',{expanded:await menu.getAttribute('aria-expanded')});
+                await menu.click();
+                await nav.locator('a[href="#booking"]').click();
+                check('menu_closes_after_booking',!(await nav.isVisible())&&(await menu.getAttribute('aria-expanded'))==='false',{hash:await page.evaluate(()=>location.hash)});
+              }else{
+                check('desktop_nav_visible',await page.locator('.desktop-nav').isVisible(),{});
+                await page.locator('.header-inner > a[href="#booking"]').click();
+              }
+              await page.waitForTimeout(900);
+              const anchorInfo=await page.evaluate(()=>{
+                const h=document.querySelector('header').getBoundingClientRect(),b=document.querySelector('#booking').getBoundingClientRect();
+                return {hash:location.hash,headerBottom:h.bottom,bookingTop:b.top,scrollY:scrollY,overflow:document.documentElement.scrollWidth>innerWidth};
+              });
+              check('booking_anchor',anchorInfo.hash==='#booking'&&anchorInfo.bookingTop>=anchorInfo.headerBottom-3&&anchorInfo.scrollY>0,anchorInfo);
+              check('no_document_overflow',!anchorInfo.overflow,anchorInfo);
+              await page.screenshot({path:'flow-qa/header-booking-'+width+'.png'});
+            }catch(error){
+              test.errors.push(String(error));
+              check('interaction_execution',false,{error:String(error)});
+            }finally{
+              interactionResults.push(test);
+              await page.close();
+            }
+          }
+          fs.writeFileSync('flow-qa/header-interaction-qa.json',JSON.stringify(interactionResults,null,2));
+          const failures=interactionResults.flatMap(t=>t.checks.filter(c=>c.status==='FAIL').map(c=>({width:t.width,...c})));
+          fs.writeFileSync('flow-qa/header-interaction-summary.json',JSON.stringify({passed:failures.length===0,failures},null,2));
           fs.writeFileSync('flow-qa/diagnostics.json',JSON.stringify(results,null,2));
           await browser.close();
           EOF
@@ -65,3 +117,7 @@ jobs:
           name: flow-visual-preview
           path: flow-qa/
           retention-days: 7
+      - name: Assert Header interaction QA
+        if: always()
+        run: |
+          node -e "const r=require('./flow-qa/header-interaction-summary.json'); if(!r.passed){console.error(JSON.stringify(r.failures,null,2));process.exit(1)}"
