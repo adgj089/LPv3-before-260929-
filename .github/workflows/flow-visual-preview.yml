@@ -116,6 +116,92 @@ jobs:
               await page.close();
             }
           }
+
+          // STEP4: full-page visual captures, layout/asset checks, and non-destructive interactions.
+          const step4Widths=[1440,1200,1101,1100,1024,834,768,767,390,320];
+          const step4Results=[];
+          fs.mkdirSync('flow-qa/trainer',{recursive:true});
+          fs.mkdirSync('flow-qa/full-page',{recursive:true});
+          for(const width of step4Widths){
+            const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+            const record={width,checks:[],metrics:{},errors:[]};
+            const check=(name,pass,detail)=>record.checks.push({name,status:pass?'PASS':'FAIL',detail});
+            try{
+              await page.goto('file://' + process.env.GITHUB_WORKSPACE + '/karadamake_gym_before_lp_v2.html');
+              await page.locator('#trainer').scrollIntoViewIfNeeded();
+              await page.locator('#trainer').screenshot({path:'flow-qa/trainer/trainer-'+width+'.png'});
+              await page.screenshot({path:'flow-qa/full-page/full-'+width+'.png',fullPage:true,animations:'disabled'});
+              const metrics=await page.evaluate(()=>{
+                const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom};};
+                const cards=[...document.querySelectorAll('#trainer .trainer')].map(card=>{
+                  const photo=card.querySelector('.trainer-main'),content=card.querySelector('.trainer-content'),image=card.querySelector('.trainer-scene');
+                  return {card:rect(card),photo:rect(photo),content:rect(content),contentInnerWidth:content.clientWidth-parseFloat(getComputedStyle(content).paddingLeft)-parseFloat(getComputedStyle(content).paddingRight),photoSrc:photo.currentSrc,photoLoaded:photo.complete&&photo.naturalWidth>0,sceneLoaded:image.complete&&image.naturalWidth>0};
+                });
+                const images=[...document.images].map(img=>({src:img.getAttribute('src'),loaded:img.complete&&img.naturalWidth>0}));
+                const root=document.documentElement;
+                return {viewport:innerWidth,scrollWidth:root.scrollWidth,trainerCount:cards.length,cards,images,flowSteps:document.querySelectorAll('#flow .flow-step').length,faqCount:document.querySelectorAll('.faq-q').length,formCount:document.querySelectorAll('.demo-form').length};
+              });
+              record.metrics=metrics;
+              check('no_page_horizontal_overflow',metrics.scrollWidth<=width+1,{scrollWidth:metrics.scrollWidth});
+              check('trainer_count',metrics.trainerCount===3,{count:metrics.trainerCount});
+              check('flow_step_count',metrics.flowSteps===4,{count:metrics.flowSteps});
+              check('all_images_loaded',metrics.images.every(x=>x.loaded),metrics.images.filter(x=>!x.loaded));
+              check('sato_image_selection',metrics.cards.length===3&&(width<=767?metrics.cards[2].photoSrc.includes('trainer-sato-mobile.webp'):metrics.cards[2].photoSrc.includes('trainer-sato.webp')),{src:metrics.cards[2]?.photoSrc});
+              // Objective minimum width guard. A visual PASS still requires manual screenshot inspection.
+              check('trainer_text_min_width',metrics.cards.every(x=>x.contentInnerWidth>=190),metrics.cards.map(x=>({width:x.contentInnerWidth})));
+              check('trainer_photo_text_separation',metrics.cards.every(x=>x.photo.bottom<=x.content.y+2||x.photo.right<=x.content.x+2),metrics.cards.map(x=>({photo:x.photo,content:x.content})));
+            }catch(error){record.errors.push(String(error));check('step4_capture_execution',false,{error:String(error)});}
+            finally{step4Results.push(record);await page.close();}
+          }
+          const interactionWidths=[1440,1101,1100,768,390,320];
+          for(const width of interactionWidths){
+            const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+            const rec=step4Results.find(x=>x.width===width);
+            const check=(name,pass,detail)=>rec.checks.push({name,status:pass?'PASS':'FAIL',detail});
+            try{
+              await page.goto('file://' + process.env.GITHUB_WORKSPACE + '/karadamake_gym_before_lp_v2.html');
+              const faq=page.locator('.faq-q');
+              check('faq_question_count',await faq.count()===8,{count:await faq.count()});
+              for(let i=0;i<await faq.count();i++){
+                const button=faq.nth(i),item=button.locator('xpath=..');
+                await button.click();
+                check('faq_'+(i+1)+'_open',await item.evaluate(e=>e.classList.contains('open')),{});
+                await button.click();
+                check('faq_'+(i+1)+'_close',!(await item.evaluate(e=>e.classList.contains('open'))),{});
+              }
+              const forms=page.locator('form.demo-form');
+              check('form_count',await forms.count()===2,{count:await forms.count()});
+              for(let i=0;i<await forms.count();i++){
+                const form=forms.nth(i);
+                const required=await form.locator('[required]').count();
+                const emptyBlocked=await form.evaluate(e=>!e.checkValidity());
+                check('form_'+(i+1)+'_required_validation',required>0&&emptyBlocked,{required});
+                await form.locator('input[type="text"]').first().fill('QA Test');
+                await form.locator('input[type="email"]').first().fill('qa@example.invalid');
+                const remaining=await form.locator('[required]');
+                for(let j=0;j<await remaining.count();j++){
+                  const el=remaining.nth(j),valid=await el.evaluate(e=>e.checkValidity());
+                  if(!valid){
+                    const tag=await el.evaluate(e=>e.tagName.toLowerCase());
+                    if(tag==='select'){const values=await el.locator('option').evaluateAll(opts=>opts.map(o=>o.value).filter(Boolean));if(values.length)await el.selectOption(values[0]);}
+                    else await el.fill('QA only');
+                  }
+                }
+                const valid=await form.evaluate(e=>e.checkValidity());
+                check('form_'+(i+1)+'_valid_inputs',valid,{});
+                if(valid){
+                  page.once('dialog',dialog=>dialog.accept());
+                  await form.locator('button[type="submit"],input[type="submit"],button:not([type])').first().click({timeout:4000});
+                  check('form_'+(i+1)+'_stays_on_demo_page',await page.locator('#trainer').count()===1,{});
+                }
+              }
+            }catch(error){rec.errors.push(String(error));check('step4_interaction_execution',false,{error:String(error)});}
+            finally{await page.close();}
+          }
+          const failed=step4Results.flatMap(r=>r.checks.filter(c=>c.status==='FAIL').map(c=>({width:r.width,...c})));
+          fs.writeFileSync('flow-qa/step4-diagnostics.json',JSON.stringify(step4Results,null,2));
+          fs.writeFileSync('flow-qa/step4-summary.json',JSON.stringify({passed:failed.length===0,failures:failed,visualReview:'NOT TESTED - inspect full-page screenshots manually'},null,2));
+
           fs.writeFileSync('flow-qa/header-interaction-qa.json',JSON.stringify(interactionResults,null,2));
           const failures=interactionResults.flatMap(t=>t.checks.filter(c=>c.status==='FAIL').map(c=>({width:t.width,...c})));
           fs.writeFileSync('flow-qa/header-interaction-summary.json',JSON.stringify({passed:failures.length===0,failures},null,2));
