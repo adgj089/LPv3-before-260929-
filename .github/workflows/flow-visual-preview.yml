@@ -19,7 +19,9 @@ jobs:
       - name: Capture Flow at viewport sizes
         run: |
           cat > /tmp/flow-preview.mjs <<'EOF'
-          import { chromium } from '${process.env.GITHUB_WORKSPACE}/node_modules/playwright/index.mjs';
+          import { createRequire } from 'node:module';
+          const require = createRequire(process.cwd() + '/package.json');
+          const { chromium } = require('playwright');
           import fs from 'node:fs';
           const browser = await chromium.launch({headless:true});
           fs.mkdirSync('flow-qa',{recursive:true});
