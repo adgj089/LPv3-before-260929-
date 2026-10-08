@@ -2,7 +2,7 @@ name: Flow Visual Preview
 on:
   push:
     branches: [before-step3-settings-261007]
-    paths: ['.github/workflows/flow-visual-preview.yml']
+    paths: ['.github/workflows/flow-visual-preview.yml', 'karadamake_gym_before_lp_v2.html']
   workflow_dispatch:
 jobs:
   screenshot:
