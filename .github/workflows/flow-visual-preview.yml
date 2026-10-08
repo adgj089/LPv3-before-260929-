@@ -26,7 +26,7 @@ jobs:
           const browser = await chromium.launch({headless:true});
           fs.mkdirSync('flow-qa',{recursive:true});
           const results=[];
-          for(const width of [1440,1024,834,768,767,390,320]){
+          for(const width of [1440,1200,1150,1101,1100,1080,1060,1025,1024,1000,834,768,767,390,320]){
             const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
             await page.goto('file://' + process.env.GITHUB_WORKSPACE + '/karadamake_gym_before_lp_v2.html');
             await page.locator('#flow').scrollIntoViewIfNeeded();
