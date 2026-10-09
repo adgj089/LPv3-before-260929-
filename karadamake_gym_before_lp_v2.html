@@ -457,10 +457,11 @@ const mobileMenu=document.querySelector('.mobile-menu');
 menuBtn.addEventListener('click',()=>{
  const open=mobileMenu.classList.toggle('open');
  menuBtn.setAttribute('aria-expanded',open);
+ menuBtn.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く');
  menuBtn.textContent=open?'×':'☰';
 });
 mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
- mobileMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰';
+ mobileMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.setAttribute('aria-label','メニューを開く');menuBtn.textContent='☰';
 }));
 document.querySelectorAll('.faq-q').forEach(btn=>{
  btn.addEventListener('click',()=>{
