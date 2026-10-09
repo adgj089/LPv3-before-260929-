@@ -206,6 +206,84 @@ jobs:
           const failures=interactionResults.flatMap(t=>t.checks.filter(c=>c.status==='FAIL').map(c=>({width:t.width,...c})));
           fs.writeFileSync('flow-qa/header-interaction-summary.json',JSON.stringify({passed:failures.length===0,failures},null,2));
           fs.writeFileSync('flow-qa/diagnostics.json',JSON.stringify(results,null,2));
+          // STEP5: published Pages form QA (read-only; synthetic data only).
+          const publishedUrl='https://adgj089.github.io/LPv3-before-260929-/karadamake_gym_before_lp_v2.html';
+          const expectedAlert='このフォームはデモ用のため、実際には送信されません。';
+          const formQa=[];
+          for(const width of [390,768,1440,320]){
+            const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+            const record={width,target:'published GitHub Pages',checks:[],errors:[]};
+            const check=(name,pass,detail)=>record.checks.push({name,status:pass?'PASS':'FAIL',detail});
+            const submissions=[];
+            const handleRequest=request=>{
+              if(['POST','PUT','PATCH','DELETE'].includes(request.method()))
+                submissions.push({method:request.method(),url:request.url()});
+            };
+            page.on('request',handleRequest);
+            try{
+              const response=await page.goto(publishedUrl,{waitUntil:'domcontentloaded',timeout:30000});
+              check('public_page_http_ok',!!response&&response.ok(),{status:response?.status()});
+              const publishedMarker=await page.locator('#booking button[type="submit"]').innerText();
+              check('published_step5_copy',publishedMarker.trim()==='予約フォームのデモを確認する',{text:publishedMarker});
+              const initialOverflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
+              check('no_horizontal_overflow',initialOverflow<=1,{overflowPx:initialOverflow});
+              await page.locator('#booking').screenshot({path:'flow-qa/step5-booking-'+width+'.png'});
+              if(width!==320){
+                for(const [formId,selector,firstRequired] of [
+                  ['booking','#booking form.demo-form','#r-name'],
+                  ['contact','#contact form.demo-form','#c-name']
+                ]){
+                  const form=page.locator(selector);
+                  const button=form.locator('button[type="submit"]');
+                  check(formId+'_form_exists',await form.count()===1,{});
+                  let invalidCount=0;
+                  await form.evaluate(node=>node.addEventListener('invalid',()=>{},true));
+                  const invalidListener=()=>{invalidCount++};
+                  // Count actual invalid events produced by a user-like submit.
+                  await form.evaluate(node=>{node.dataset.qaInvalidCount='0';node.addEventListener('invalid',()=>{node.dataset.qaInvalidCount=String(Number(node.dataset.qaInvalidCount)+1)},true)});
+                  let blankDialogCount=0;
+                  const unexpectedDialog=async dialog=>{blankDialogCount++;await dialog.dismiss()};
+                  page.on('dialog',unexpectedDialog);
+                  const urlBefore=page.url();
+                  await button.click();
+                  const blankValidity=await form.evaluate(node=>node.checkValidity());
+                  const focus=await page.evaluate(()=>document.activeElement?.id||null);
+                  const invalidEvents=Number(await form.getAttribute('data-qa-invalid-count'));
+                  check(formId+'_empty_invalid',!blankValidity&&invalidEvents>0,{invalidEvents});
+                  check(formId+'_focus_first_required',focus===firstRequired,{expected:firstRequired,actual:focus});
+                  check(formId+'_empty_no_dialog',blankDialogCount===0,{count:blankDialogCount});
+                  check(formId+'_empty_no_navigation',page.url()===urlBefore,{url:page.url()});
+                  page.off('dialog',unexpectedDialog);
+                  await form.locator('input[type="text"]').first().fill('QA Test');
+                  await form.locator('input[type="email"]').first().fill('qa@example.invalid');
+                  if(formId==='contact')await form.locator('textarea[required]').fill('QA test only');
+                  check(formId+'_valid_inputs',await form.evaluate(node=>node.checkValidity()),{});
+                  let dialogData=null;
+                  const dialogPromise=page.waitForEvent('dialog',{timeout:6000}).then(async dialog=>{
+                    dialogData={type:dialog.type(),message:dialog.message()};
+                    await dialog.accept();
+                  });
+                  await button.click();
+                  await dialogPromise;
+                  check(formId+'_alert_type',dialogData?.type==='alert',dialogData);
+                  check(formId+'_alert_exact_text',dialogData?.message===expectedAlert,dialogData);
+                  check(formId+'_valid_no_navigation',page.url()===urlBefore,{url:page.url()});
+                }
+                check('no_mutating_network_requests',submissions.length===0,{requests:submissions});
+              }else{
+                check('mobile_320_layout_only',true,{note:'Form interactions covered at 390/768/1440'});
+              }
+            }catch(error){
+              record.errors.push(String(error));
+              check('published_form_qa_execution',false,{error:String(error)});
+            }finally{
+              formQa.push(record);
+              await page.close();
+            }
+          }
+          const formFailures=formQa.flatMap(r=>r.checks.filter(c=>c.status==='FAIL').map(c=>({width:r.width,...c})));
+          fs.writeFileSync('flow-qa/step5-form-qa.json',JSON.stringify(formQa,null,2));
+          fs.writeFileSync('flow-qa/step5-form-summary.json',JSON.stringify({passed:formFailures.length===0,failures:formFailures,publishedUrl,visualReview:'NOT TESTED - screenshots require manual review'},null,2));
           await browser.close();
           EOF
           node /tmp/flow-preview.mjs
@@ -218,3 +296,7 @@ jobs:
         if: always()
         run: |
           node -e "const r=require('./flow-qa/header-interaction-summary.json'); if(!r.passed){console.error(JSON.stringify(r.failures,null,2));process.exit(1)}"
+      - name: Assert published form QA
+        if: always()
+        run: |
+          node -e "const fs=require('fs');const p='./flow-qa/step5-form-summary.json';if(!fs.existsSync(p)){console.error('Missing form summary');process.exit(1)}const r=JSON.parse(fs.readFileSync(p));if(!r.passed){console.error(JSON.stringify(r.failures,null,2));process.exit(1)}"
