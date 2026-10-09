@@ -177,15 +177,15 @@ html{scroll-padding-top:90px}
 @media (min-width:1101px){
   .header-inner{
     display:grid;
-    grid-template-columns:max-content minmax(0,1fr) max-content;
+    grid-template-columns:minmax(0,1fr) max-content minmax(0,1fr);
     align-items:center;
-    column-gap:12px;
+    column-gap:8px;
   }
   .logo{justify-self:start}
   .desktop-nav{
     margin-left:0;
     justify-self:center;
-    gap:clamp(8px,1vw,16px);
+    gap:clamp(8px,.8vw,14px);
     white-space:nowrap;
   }
   .header-inner>.header-cta{justify-self:end}
