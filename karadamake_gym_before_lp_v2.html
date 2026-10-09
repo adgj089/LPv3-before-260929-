@@ -169,6 +169,11 @@ footer{padding-top:38px}
  .trainer-grid .trainer:nth-child(3){grid-template-columns:1fr}
  .trainer-grid .trainer:nth-child(3) .trainer-main{height:auto;min-height:0;aspect-ratio:4/3}
 }
+/* T-01: Trainer tablet layout only; stack Takahashi and Yamamoto. */
+@media (min-width:768px) and (max-width:1023px){
+ #trainer .trainer-grid .trainer:nth-child(-n+2){grid-template-columns:minmax(0,1fr)}
+ #trainer .trainer-grid .trainer:nth-child(-n+2) .trainer-main{height:auto;min-height:0;aspect-ratio:4/3}
+}
 /* STEP6-3: Concept tablet layout only; prevent nowrap heading from shrinking image column. */
 @media (min-width:768px) and (max-width:1023px){
  #concept .two-col{grid-template-columns:minmax(0,1fr)}
