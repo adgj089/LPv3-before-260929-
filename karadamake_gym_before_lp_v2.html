@@ -372,16 +372,16 @@ html{scroll-padding-top:90px}
   <h2 class="section-title">よくあるご質問</h2>
   <div class="faq">
     <div class="faq-column">
-     <div class="faq-item"><button class="faq-q"><span>運動経験がなくても大丈夫ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。運動が初めての方には、基本的な動きやフォームから丁寧にご案内します。体力や経験に合わせて内容を調整します。</div></div>
-     <div class="faq-item"><button class="faq-q"><span>持ち物は何が必要ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">運動しやすい服装、室内用シューズ、タオル、飲み物などをご用意ください。</div></div>
-     <div class="faq-item"><button class="faq-q"><span>支払い方法を教えてください。</span><span class="faq-symbol">＋</span></button><div class="faq-a">クレジットカード、現金、銀行振込に対応しています。</div></div>
-     <div class="faq-item"><button class="faq-q"><span>予約の変更・キャンセルはできますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">前日までの変更・キャンセルは無料です。当日キャンセル・無断キャンセルは1回分消化となります。</div></div>
+     <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>運動経験がなくても大丈夫ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。運動が初めての方には、基本的な動きやフォームから丁寧にご案内します。体力や経験に合わせて内容を調整します。</div></div>
+     <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>持ち物は何が必要ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">運動しやすい服装、室内用シューズ、タオル、飲み物などをご用意ください。</div></div>
+     <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>支払い方法を教えてください。</span><span class="faq-symbol">＋</span></button><div class="faq-a">クレジットカード、現金、銀行振込に対応しています。</div></div>
+     <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>予約の変更・キャンセルはできますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">前日までの変更・キャンセルは無料です。当日キャンセル・無断キャンセルは1回分消化となります。</div></div>
     </div>
     <div class="faq-column">
-     <div class="faq-item"><button class="faq-q"><span>駐車場はありますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。店舗前に専用駐車場を10台ご用意しています。お車でお越しいただけます。</div></div>
-     <div class="faq-item"><button class="faq-q"><span>追加料金はかかりますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">基本の月額料金のほか、入会時に入会金11,000円が必要です。ご不明な点は事前にお問い合わせください。</div></div>
-     <div class="faq-item"><button class="faq-q"><span>トレーニングは予約が必要ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。マンツーマンでのご案内となるため、事前にご予約をお願いしています。</div></div>
-     <div class="faq-item"><button class="faq-q"><span>体験トレーニングとカウンセリングの料金はいくらですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">体験トレーニングは3,300円、カウンセリングは無料です。ご希望の内容は予約時にお伝えください。</div></div>
+     <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>駐車場はありますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。店舗前に専用駐車場を10台ご用意しています。お車でお越しいただけます。</div></div>
+     <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>追加料金はかかりますか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">基本の月額料金のほか、入会時に入会金11,000円が必要です。ご不明な点は事前にお問い合わせください。</div></div>
+     <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>トレーニングは予約が必要ですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">はい。マンツーマンでのご案内となるため、事前にご予約をお願いしています。</div></div>
+     <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>体験トレーニングとカウンセリングの料金はいくらですか？</span><span class="faq-symbol">＋</span></button><div class="faq-a">体験トレーニングは3,300円、カウンセリングは無料です。ご希望の内容は予約時にお伝えください。</div></div>
     </div>
   </div>
  </div>
@@ -467,6 +467,7 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
  btn.addEventListener('click',()=>{
   const item=btn.closest('.faq-item');
   const open=item.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open);
   btn.querySelector('.faq-symbol').textContent=open?'−':'＋';
  });
 });
