@@ -322,6 +322,44 @@ jobs:
           }
           fs.writeFileSync('flow-qa/step6-6/diagnostics.json',JSON.stringify(step66,null,2));
           fs.writeFileSync('flow-qa/step6-6/summary.json',JSON.stringify({pass:step66.every(r=>r.errors.length===0&&r.faq.length===8&&r.faq.every(f=>f.open&&f.unclipped)&&r.forms.length===2&&r.forms.every(f=>f.invalidBlocked&&f.focusCorrect)),visualReview:'NOT TESTED - inspect screenshots and native warning UI separately'},null,2));
+          // STEP6-6: booking time interval validation on the working-branch HTML only.
+          const timeChecks=[];
+          for(const width of [320,390,768,1440]){
+            const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+            const record={width,checks:[],errors:[]};
+            const check=(name,pass,details)=>record.checks.push({name,status:pass?'PASS':'FAIL',details});
+            try{
+              await page.goto('file://' + process.env.GITHUB_WORKSPACE + '/karadamake_gym_before_lp_v2.html');
+              const field=page.locator('#r-date'),form=page.locator('#booking form.demo-form');
+              check('step_attribute',await field.getAttribute('step')==='1800',{step:await field.getAttribute('step')});
+              check('optional_datetime',!(await field.evaluate(el=>el.required)),{});
+              for(const [label,value,shouldPass] of [
+                ['empty','',true],['0900','2026-11-10T09:00',true],
+                ['0930','2026-11-10T09:30',true],['1000','2026-11-10T10:00',true],
+                ['0915','2026-11-10T09:15',false],['0945','2026-11-10T09:45',false],
+                ['0901','2026-11-10T09:01',false]
+              ]){
+                await field.fill(value);
+                const data=await field.evaluate(el=>({value:el.value,valid:el.checkValidity(),stepMismatch:el.validity.stepMismatch}));
+                check('value_'+label,data.valid===shouldPass&&(!shouldPass?data.stepMismatch:true),data);
+              }
+              await form.locator('#r-name').fill('QA Test');
+              await form.locator('#r-mail').fill('qa@example.invalid');
+              let alertCount=0;
+              page.on('dialog',async dialog=>{alertCount++;await dialog.accept()});
+              await field.fill('2026-11-10T09:15');
+              await form.locator('button[type="submit"]').click();
+              check('invalid_submit_blocked',alertCount===0&&!(await form.evaluate(el=>el.checkValidity())),{alertCount});
+              await field.fill('2026-11-10T09:30');
+              await form.locator('button[type="submit"]').click();
+              check('valid_submit_demo_alert',alertCount===1,{alertCount});
+              check('no_navigation',page.url().startsWith('file:'),{url:page.url()});
+            }catch(error){record.errors.push(String(error));}
+            finally{timeChecks.push(record);await page.close();}
+          }
+          const timeFailures=timeChecks.flatMap(r=>r.errors.map(error=>({width:r.width,error})).concat(r.checks.filter(c=>c.status==='FAIL').map(c=>({width:r.width,...c}))));
+          fs.writeFileSync('flow-qa/step6-6/time-validation.json',JSON.stringify(timeChecks,null,2));
+          fs.writeFileSync('flow-qa/step6-6/time-validation-summary.json',JSON.stringify({passed:timeFailures.length===0,failures:timeFailures,pickerVisual:'NOT TESTED'},null,2));
           await browser.close();
           EOF
           node /tmp/flow-preview.mjs
