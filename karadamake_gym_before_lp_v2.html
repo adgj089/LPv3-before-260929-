@@ -185,9 +185,11 @@ footer{padding-top:38px}
  #features .feature,#features .feature:nth-child(4){grid-column:auto}
  #features .feature:nth-child(5){grid-column:1 / -1;width:calc(50% - 9px);justify-self:center}
 }
-/* H-01 / H-02: narrow mobile headings only */
-@media (max-width:359px){
+/* H-01: narrow Hero heading through 389px; H-02: Features through 359px */
+@media (max-width:389px){
  .hero h1{font-size:24px}
+}
+@media (max-width:359px){
  #features .section-title{font-size:22px}
 }
 /* Sticky Header and anchor offsets: scoped after responsive rules. */
