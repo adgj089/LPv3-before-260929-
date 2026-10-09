@@ -230,8 +230,8 @@ jobs:
               await page.locator('#booking').screenshot({path:'flow-qa/step5-booking-'+width+'.png'});
               if(width!==320){
                 for(const [formId,selector,firstRequired] of [
-                  ['booking','#booking form.demo-form','#r-name'],
-                  ['contact','#contact form.demo-form','#c-name']
+                  ['booking','#booking form.demo-form','r-name'],
+                  ['contact','#contact form.demo-form','c-name']
                 ]){
                   const form=page.locator(selector);
                   const button=form.locator('button[type="submit"]');
