@@ -169,6 +169,11 @@ footer{padding-top:38px}
  .trainer-grid .trainer:nth-child(3){grid-template-columns:1fr}
  .trainer-grid .trainer:nth-child(3) .trainer-main{height:auto;min-height:0;aspect-ratio:4/3}
 }
+/* STEP6-3: Concept tablet layout only; prevent nowrap heading from shrinking image column. */
+@media (min-width:768px) and (max-width:1023px){
+ #concept .two-col{grid-template-columns:minmax(0,1fr)}
+ #concept .section-title{white-space:normal}
+}
 /* Sticky Header and anchor offsets: scoped after responsive rules. */
 header{position:sticky;top:0;z-index:20}
 html{scroll-padding-top:90px}
