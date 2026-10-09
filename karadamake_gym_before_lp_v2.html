@@ -169,6 +169,29 @@ footer{padding-top:38px}
  .trainer-grid .trainer:nth-child(3){grid-template-columns:1fr}
  .trainer-grid .trainer:nth-child(3) .trainer-main{height:auto;min-height:0;aspect-ratio:4/3}
 }
+/* T-01: Trainer tablet layout only; stack Takahashi and Yamamoto. */
+@media (min-width:768px) and (max-width:1023px){
+ #trainer .trainer-grid .trainer:nth-child(-n+2){grid-template-columns:minmax(0,1fr)}
+ #trainer .trainer-grid .trainer:nth-child(-n+2) .trainer-main{height:auto;min-height:0;aspect-ratio:4/3}
+}
+/* STEP6-3: Concept tablet layout only; prevent nowrap heading from shrinking image column. */
+@media (min-width:768px) and (max-width:1023px){
+ #concept .two-col{grid-template-columns:minmax(0,1fr)}
+ #concept .section-title{white-space:normal}
+}
+/* F-01: Features tablet layout only */
+@media (min-width:768px) and (max-width:1023px){
+ #features .features-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #features .feature,#features .feature:nth-child(4){grid-column:auto}
+ #features .feature:nth-child(5){grid-column:1 / -1;width:calc(50% - 9px);justify-self:center}
+}
+/* H-01: narrow Hero heading through 389px; H-02: Features through 359px */
+@media (max-width:389px){
+ .hero h1{font-size:24px}
+}
+@media (max-width:359px){
+ #features .section-title{font-size:22px}
+}
 /* Sticky Header and anchor offsets: scoped after responsive rules. */
 header{position:sticky;top:0;z-index:20}
 html{scroll-padding-top:90px}
@@ -377,7 +400,7 @@ html{scroll-padding-top:90px}
     <div class="field"><label for="r-name">お名前</label><input id="r-name" type="text" required></div>
     <div class="field"><label for="r-mail">メールアドレス</label><input id="r-mail" type="email" required></div>
     <div class="field"><label for="r-tel">電話番号</label><input id="r-tel" type="tel"></div>
-    <div class="field"><label for="r-date">希望日時</label><input id="r-date" type="datetime-local"></div>
+    <div class="field"><label for="r-date">希望日時</label><input id="r-date" type="datetime-local" step="1800"></div>
     <div class="field"><label for="r-type">希望内容</label><select id="r-type"><option>体験トレーニング</option><option>カウンセリング</option><option>両方</option></select></div>
     <div class="field"><label for="r-msg">相談内容</label><textarea id="r-msg"></textarea></div>
     <button class="btn" type="submit">予約フォームのデモを確認する</button>
