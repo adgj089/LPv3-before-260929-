@@ -185,6 +185,11 @@ footer{padding-top:38px}
  #features .feature,#features .feature:nth-child(4){grid-column:auto}
  #features .feature:nth-child(5){grid-column:1 / -1;width:calc(50% - 9px);justify-self:center}
 }
+/* H-01 / H-02: narrow mobile headings only */
+@media (max-width:359px){
+ .hero h1{font-size:24px}
+ #features .section-title{font-size:22px}
+}
 /* Sticky Header and anchor offsets: scoped after responsive rules. */
 header{position:sticky;top:0;z-index:20}
 html{scroll-padding-top:90px}
