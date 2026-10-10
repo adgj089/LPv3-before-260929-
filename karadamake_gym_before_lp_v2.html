@@ -494,6 +494,22 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   btn.querySelector('.faq-symbol').textContent=open?'−':'＋';
  });
 });
+// FM-01: localize required-field and email-format validation messages.
+document.querySelectorAll('.demo-form').forEach(form=>{
+ form.querySelectorAll('input[required], textarea[required]').forEach(field=>{
+  const label=form.querySelector('label[for="'+field.id+'"]')?.textContent.trim()||'この項目';
+  const updateValidity=()=>{
+   field.setCustomValidity('');
+   if(field.validity.valueMissing){
+    field.setCustomValidity(label+'を入力してください。');
+   }else if(field.validity.typeMismatch){
+    field.setCustomValidity('正しいメールアドレスを入力してください。');
+   }
+  };
+  field.addEventListener('invalid',updateValidity);
+  field.addEventListener('input',updateValidity);
+ });
+});
 document.querySelectorAll('.demo-form').forEach(form=>{
  form.addEventListener('submit',e=>{
   e.preventDefault();
