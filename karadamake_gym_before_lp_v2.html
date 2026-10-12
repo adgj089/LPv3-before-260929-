@@ -26,7 +26,7 @@ header{background:#fff;border-bottom:1px solid #edf1f3}.header-inner{height:82px
 .faq{border-top:1px solid var(--line)}.faq-item{border-bottom:1px solid var(--line)}.faq-q{width:100%;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:20px 4px;background:#fff;border:0;text-align:left;font-weight:600;color:var(--text)}.faq-symbol{position:relative;display:block;flex:0 0 24px;width:24px;height:42px;color:var(--main);font-size:0}.faq-symbol::before,.faq-symbol::after{content:"";position:absolute;top:50%;left:50%;width:12px;height:2px;background:currentColor;transform:translate(-50%,-50%)}.faq-symbol::after{transform:translate(-50%,-50%) rotate(90deg)}.faq-item.open .faq-symbol::after{display:none}.faq-a{max-height:0;overflow:hidden;padding:0 42px 0 4px;transition:max-height .25s ease,padding-bottom .25s ease}.faq-item.open .faq-a{max-height:12em;padding-bottom:20px}
 .mobile-only{display:none}
 .booking-grid{display:grid;grid-template-columns:2fr 3fr;gap:50px;align-items:start}.info-box{padding:24px;background:#fff;border-left:4px solid var(--main)}.info-box p{margin:4px 0}.form-box{background:#fff;border:1px solid var(--line);padding:28px;border-radius:8px}.field{margin-bottom:18px}.field label{display:block;font-weight:600;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid #bdcbd1;border-radius:4px;background:#fff}.field textarea{min-height:120px;resize:vertical}.form-box .btn{width:100%}
-.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}.access-list{margin:24px 0 0;padding:0;list-style:none}.access-list li{padding:10px 0;border-bottom:1px solid var(--line)}.access-map-image{display:block;width:100%;max-width:480px;height:auto;object-fit:contain;margin-inline:auto;border:1px solid #bdcbd1;border-radius:8px}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}.access-list{margin:24px 0 0;padding:0;list-style:none}.access-list li{padding:10px 0;border-bottom:1px solid var(--line)}.access-map-image{display:block;width:100%;max-width:480px;height:auto;object-fit:contain;margin-inline:auto;border:1px solid #bdcbd1;border-radius:8px}#access .access-note{display:flex;align-items:flex-start}#access .access-note-mark{flex:none}#access .access-note-text{min-width:0}
 .contact-wrap{max-width:760px;margin:auto}.contact-info{text-align:center;margin-bottom:28px}.contact-wrap .section-title{text-align:center}.contact-wrap .section-title:after{margin:14px auto 0}
 footer{background:var(--dark);color:#fff;padding:52px 0 24px}.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:40px}.footer-logo{font-size:22px;font-weight:700}.footer-nav{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}.footer-meta p{margin:3px 0}.copyright{border-top:1px solid rgba(255,255,255,.25);margin-top:36px;padding-top:18px;font-size:13px;color:#e6eef1}
 @media(max-width:767px){
@@ -460,7 +460,7 @@ html{scroll-padding-top:90px}
    <div>
     <p>お車で通いやすい郊外型のパーソナルジムです。店舗前に専用駐車場を10台ご用意しています。</p>
     <ul class="access-list"><li><strong>住所：</strong>長野県長野市○○町1-2-3</li><li><strong>営業時間：</strong>9:00〜21:00</li><li><strong>定休日：</strong>月曜日</li><li><strong>駐車場：</strong>10台</li></ul>
-    <p class="note">※住所は架空の設定です。実在する店舗・住所ではありません。</p>
+    <p class="note access-note"><span class="access-note-mark">※</span><span class="access-note-text">住所は架空の設定です。実在する店舗・住所ではありません。</span></p>
    </div>
    <div><img class="access-map-image" src="assets/images/access-map.webp" alt="NAGANO FIT PARTNERの架空案内マップ。県道沿いの店舗、駐車場、ショッピングセンター、運動公園と長野駅方面を示したイメージ図。" width="1254" height="1254" loading="lazy" decoding="async"></div>
   </div>
@@ -470,7 +470,7 @@ html{scroll-padding-top:90px}
 <section class="section bg-pale" id="contact">
  <div class="container contact-wrap">
   <h2 class="section-title">お問い合わせ</h2>
-  <div class="contact-info"><p>サービス内容や料金など、一般的なお問い合わせはこちらからご連絡ください。</p><p><strong>電話：</strong>000-0000-0000　<strong>メール：</strong>info@example.com</p></div>
+  <div class="contact-info"><p>サービス内容や料金についてのお問い合わせはこちらから。</p><p><strong>電話：</strong>000-0000-0000　<strong>メール：</strong>info@example.com</p></div>
   <form class="form-box demo-form">
    <div class="field"><label for="c-name">お名前</label><input id="c-name" type="text" required></div>
    <div class="field"><label for="c-mail">メールアドレス</label><input id="c-mail" type="email" required></div>
